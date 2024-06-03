@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ItemCounters {
 
-    [BepInPlugin(ModGuid, "Item Counters", "1.0.1")]
+    [BepInPlugin(ModGuid, "Item Counters", "1.0.2")]
     public class ItemCountersPlugin : BaseUnityPlugin {
 
         private const string ModGuid = "com.github.mcmrarm.itemcounters";
