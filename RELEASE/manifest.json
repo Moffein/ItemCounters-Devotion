@@ -1,6 +1,6 @@
 {
     "name": "ItemCounters",
-    "version_number": "1.0.3",
+    "version_number": "1.0.4",
     "website_url": "https://github.com/Moffein/ItemCounters-Devotion",
     "description": "Lets you know how many items each player has",
     "dependencies": [
