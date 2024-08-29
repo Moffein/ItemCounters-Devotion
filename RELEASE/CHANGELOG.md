@@ -1,6 +1,6 @@
 `1.0.4`
 
-- Recompiled for DLC2.
+- Updated for DLC2.
 - Now shows void items.
 
 `1.0.3`
