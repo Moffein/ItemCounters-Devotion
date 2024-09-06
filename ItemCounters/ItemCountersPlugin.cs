@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ItemCounters {
 
-    [BepInPlugin(ModGuid, "Item Counters", "1.0.4")]
+    [BepInPlugin(ModGuid, "Item Counters", "1.0.5")]
     public class ItemCountersPlugin : BaseUnityPlugin {
 
         private const string ModGuid = "com.github.mcmrarm.itemcounters";
@@ -19,8 +19,8 @@ namespace ItemCounters {
 
         private void ScoreboardStrip_UpdateItemCountText(On.RoR2.UI.ScoreboardStrip.orig_UpdateItemCountText orig, RoR2.UI.ScoreboardStrip self)
         {
-
-            if (!(self.master && self.itemInventoryDisplay && self.itemInventoryDisplay.GetTotalItemCount() != self.previousItemCount)) return;
+            int visibleItems = self.itemInventoryDisplay.GetTotalVisibleItemCount();
+            if (!(self.master && self.itemInventoryDisplay && visibleItems != self.previousItemCount)) return;
 
             CharacterMaster master = self.master;
             int tier1Count = master.inventory.GetTotalItemCountOfTier(ItemTier.Tier1);
@@ -36,10 +36,10 @@ namespace ItemCounters {
             int voidCount = tier1VoidCount + tier2VoidCount + tier3VoidCount;
 
             //Vanilla method shows hidden items.
-            self.previousItemCount = tier1Count + tier2VoidCount + tier3Count + lunarCount + bossCount + voidCount;
+            self.previousItemCount = visibleItems;
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("<nobr><color=#fff>{0} (", self.itemInventoryDisplay.GetTotalItemCount());
+            sb.AppendFormat("<nobr><color=#fff>{0} (", visibleItems);
             if (tier1Count > 0)
                 sb.AppendFormat("<color=#{1}>{0}</color> ", tier1Count, ColorCatalog.GetColorHexString(ColorCatalog.ColorIndex.Tier1Item));
             if (tier2Count > 0)
